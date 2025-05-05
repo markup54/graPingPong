@@ -9,6 +9,10 @@ clock = pygame.time.Clock()
 running = True
 
 while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+           running = False
+
     screen.fill("green")
     pygame.draw.circle(screen,"white",(30,60),10)
     pygame.display.flip()
