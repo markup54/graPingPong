@@ -1,15 +1,16 @@
-a =10
-if a%2 == 0:
-    print("liczba parzysta")
-else:
-    print(a, "nieparzyste")
+import pygame
+from pygame.examples.go_over_there import clock, running
 
-for i in range(2,10,2):
-    print(i)
+pygame.init()
 
-while a<30:
-    a=a+10
-    print("kolejna iteracja")
-print("wyszlo z pętli")
+screen = pygame.display.set_mode((1280,720))
 
-print(print.__doc__)
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    screen.fill("green")
+    pygame.draw.circle(screen,"white",(30,60),10)
+    pygame.display.flip()
+    clock.tick(60)
+
