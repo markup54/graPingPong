@@ -1,4 +1,5 @@
 import pygame
+import random
 from pygame.examples.go_over_there import clock, running
 
 pygame.init()
@@ -38,6 +39,15 @@ while running:
     if keys[pygame.K_DOWN]:
         if y_rocket2 < screen.get_height() - 50:
             y_rocket2 = y_rocket2 +5
+    #przywracanie pilki po ucieczce z ekranu
+    if x_ball<0 or x_ball >screen.get_width():
+        if keys[pygame.K_SPACE]:
+            x_ball = random.randint(50, screen.get_width() - 50)
+            y_ball = random.randint( 50, screen.get_height() - 50)
+            move_ball_x = - move_ball_x
+            move_ball_y = - move_ball_y
+
+
     x_ball = x_ball + move_ball_x
     y_ball = y_ball + move_ball_y
     if y_ball > screen.get_height():
