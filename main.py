@@ -4,7 +4,9 @@ from pygame.examples.go_over_there import clock, running
 
 pygame.init()
 
+
 screen = pygame.display.set_mode((1280,720))
+pygame.display.set_caption("Ping pong")
 
 clock = pygame.time.Clock()
 running = True
@@ -20,6 +22,10 @@ y_rocket = 30
 x_rocket2 = 1260
 y_rocket2 = 30
 
+punkty_gracz1 = 0
+punkty_gracz2 = 0
+
+zaliczone =False
 
 while running:
     for event in pygame.event.get():
@@ -46,7 +52,7 @@ while running:
             y_ball = random.randint( 50, screen.get_height() - 50)
             move_ball_x = - move_ball_x
             move_ball_y = - move_ball_y
-
+            zaliczone = False
 
     x_ball = x_ball + move_ball_x
     y_ball = y_ball + move_ball_y
@@ -60,11 +66,19 @@ while running:
     if x_ball>screen.get_width():
         # czy odbicie od paletki
         if y_ball > y_rocket2 and y_ball <y_rocket2 +50:
-            move_ball_x = - move_ball_x
-    if x_ball<0:
+            move_ball_x = - move_ball_x -2
+        elif not zaliczone:
+            punkty_gracz1 = punkty_gracz1 +1
+            zaliczone = True
+    if x_ball<10:
         # czy odbicie od paletki
         if y_ball > y_rocket and y_ball < y_rocket + 50:
-            move_ball_x = - move_ball_x
+            move_ball_x = - move_ball_x + 2
+        elif not zaliczone:
+            punkty_gracz2 = punkty_gracz2 +1
+            zaliczone = True
+
+
     screen.fill("green")
     pygame.draw.circle(screen,"white",(x_ball,y_ball),10)
 
@@ -72,6 +86,7 @@ while running:
     pygame.draw.rect(screen,"blue",(x_rocket2,y_rocket2,10,50))
 
     pygame.display.flip()
+    print(str(punkty_gracz1)+" : "+str(punkty_gracz2))
     clock.tick(60)
 
 pygame.quit()
