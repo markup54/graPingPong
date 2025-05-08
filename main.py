@@ -3,6 +3,13 @@ import random
 from pygame.examples.go_over_there import clock, running
 
 pygame.init()
+pygame.font.init()
+pygame.font.get_init()
+font = pygame.font.SysFont('freesanbold.ttf', 50)
+
+tekst = font.render('Gracz1 0 : Gracz2 0', True, (255, 255, 0))
+textRect = tekst.get_rect()
+textRect.center = (500,100)
 
 
 screen = pygame.display.set_mode((1280,720))
@@ -84,7 +91,10 @@ while running:
 
     pygame.draw.rect(screen,"black",(x_rocket,y_rocket,10,50))
     pygame.draw.rect(screen,"blue",(x_rocket2,y_rocket2,10,50))
-
+    tekst = font.render(str(punkty_gracz1)+" : "+str(punkty_gracz2), True, (150, 100, 100))
+    textRect = tekst.get_rect()
+    textRect.center = (500,30)
+    screen.blit(tekst, textRect)
     pygame.display.flip()
     print(str(punkty_gracz1)+" : "+str(punkty_gracz2))
     clock.tick(60)
